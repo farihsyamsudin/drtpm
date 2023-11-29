@@ -1,0 +1,31 @@
+.fixed-layoutHasilTangkapan{
+    position: fixed;
+    top: 29%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 50%;
+    height: 300px;
+    background-color: #212529;
+    border-radius: 20px;
+    z-index: 99999999;
+    overflow-y: auto;
+    padding: 20px;
+    color: white;
+    box-shadow: 0px 2px 100000px 1000000px rgba(212,210,210,0.75);
+    -webkit-box-shadow: 0px 2px 100000px 1000000px rgba(212,210,210,0.75);
+    -moz-box-shadow: 0px 2px 100000px 1000000px rgba(212,210,210,0.75);
+}
+
+.x-icon{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color:white;
+    padding:5px;
+    color:red;
+    border-radius: 20px;
+}
+
+.x-icon:hover{
+    cursor:pointer;
+}

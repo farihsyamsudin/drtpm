@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block content %}
+</head>
+<body class="sb-nav-fixed">
+    <div id="hasil-tangkapan" class="fixed-layoutHasilTangkapan">
+        <a href="{% url 'daftar_data_penangkapan' %}"><i class="fa fa-x x-icon"></i></a>
+        <h6>Hasil Tangkapan :</h6>
+        {% for hasil in hasil_tangkapan %}
+        <div style="padding-top: 10px; padding-bottom: 10px;">
+            <h6 style="font-size: small;">Tangkapan x</h6>
+            <ul>
+                <li style="font-size: smaller;">Nama Ikan: {{ hasil.nama_ikan }}</li>
+                <li style="font-size: smaller;">Harga: Rp.{{ hasil.harga }}</li>
+                <li style="font-size: smaller;">Volume: {{ hasil.volume }} Kg</li>
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+    {% include "component/nav.html" %}
+    <div id="layoutSidenav">
+        {% include "component/sidenav.html" %}
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 style="text-align: center;" class="mt-4">Daftar Data Penangkapan</h1>
+                    <p style="color: #94a3b8;">Daftar ini akan tampil di dalam aplikasi android</p>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            List
+                            <a href="{% url 'tambah_data_penangkapan' %}" style="margin: 10px;" class="btn btn-success">Tambah Baru</a>
+                        </div>
+                        <div class="card-body">
+                            <table id="dataTable" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Tanggal Penangkapan</th>
+                                        <th>Alat tangkap yang digunakan</th>
+                                        <th>Hasil Tangkapan</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in data_penangkapan %}
+                                        <tr>
+                                            <td>{{ data.tanggal_penangkapan|date:"d-m-Y" }}</td>
+                                            <td>{{ data.alat_tangkap }}</td>
+                                            <td>
+                                                <a href="?hasil-tangkapan={{data.id}}" class="btn btn-success">Lihat Hasil tangkapan</a>
+                                            </td>
+                                            <td>
+                                                <a onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')" href="{% url 'hapus_data_penangkapan' data.id %}">Hapus</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+            {% include "component/footer.html" %}
+        </div>
+    </div>
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(location.search);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        window.addEventListener('DOMContentLoaded', event => {
+            // Simple-DataTables
+            // https://github.com/fiduswriter/Simple-DataTables/wiki
+
+            const datatablesSimple = document.getElementById('dataTable');
+            if (datatablesSimple) {
+                new simpleDatatables.DataTable(datatablesSimple);
+            }
+        });
+
+        var hasilTangkapanParam = getParameterByName('hasil-tangkapan');
+    
+        console.log(hasilTangkapanParam);
+
+        if (hasilTangkapanParam != null) {
+            document.getElementById('hasil-tangkapan').style.display = 'block';
+        } else {
+            document.getElementById('hasil-tangkapan').style.display = 'none';
+        }
+
+    </script>
+{% endblock  %}

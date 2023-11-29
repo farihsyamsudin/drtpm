@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+</head>
+<body class="sb-nav-fixed">
+    {% include "component/nav.html" %}
+    <div id="layoutSidenav">
+        {% include "component/sidenav.html" %}
+        <div id="layoutSidenav_content">
+            <div class="container-fluid px-4">
+                <h1 class="text-center">{{headingJudul}} Data Kapal</h1>
+                <form method="post" id="dataPenangkapanForm">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input class="btn btn-success" type="submit" value="Simpan Data Kapal">
+                    <!-- <a href="{% url 'daftar_data_penangkapan' %}" class="btn btn-danger" id="minForm">Kembali</a> -->
+                </form>
+            </div> 
+            {% include "component/footer.html" %}
+        </div>
+    </div>
+{% endblock  %}

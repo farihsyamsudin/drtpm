@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+</head>
+<body class="sb-nav-fixed">
+    {% include "component/nav.html" %}
+    <div id="layoutSidenav">
+        {% include "component/sidenav.html" %}
+        <div id="layoutSidenav_content">
+            <div class="container-fluid px-4">
+                <h1 class="text-center">Tambah Data Penangkapan</h1>
+                <form method="post" id="dataPenangkapanForm">
+                    {% csrf_token %}
+                    <h3>Informasi Penangkapan :</h3>
+                    {{ form.as_p }}
+                    {{ hasil_tangkapan_formset.management_form }}
+                    <div id="container-hasil-tangkap">
+                        <h3>Hasil Tangkapan :</h3>
+                        {% for form in hasil_tangkapan_formset %}
+                            {{ form }}
+                            <hr>
+                        {% endfor %}
+                    </div>
+                    <input class="btn btn-success" type="submit" value="Simpan Data Penangkapan">
+                    <button class="btn btn-info" id="addForm" type="button">Tambah Hasil Tangkapan</button>
+                    <button class="btn btn-danger" id="minForm" type="button">Kurangi Hasil Tangkapan</button>
+                    <a href="{% url 'daftar_data_penangkapan' %}" class="btn btn-danger" id="minForm">Kembali</a>
+                </form>
+            </div> 
+            {% include "component/footer.html" %}
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Ambil tombol "Tambah Extra" dengan ID 'addExtraButton'
+            var addButton = document.getElementById('addForm');
+
+            addButton.addEventListener('click', function () {
+                // Ambil parameter 'extra' dari URL saat ini
+                var currentExtra = parseInt(new URL(window.location.href).searchParams.get('extra')) || 0;
+
+                // Tambah 1 ke 'extra'
+                var newExtra = currentExtra + 1;
+
+                // Redirect ke URL baru dengan 'extra' yang ditingkatkan
+                window.location.href = '/fishtograph/data-tangkapan/tambah/?extra=' + newExtra;
+            });
+
+            var minForm = document.getElementById('minForm');
+
+            minForm.addEventListener('click', function () {
+                var currentExtra = parseInt(new URL(window.location.href).searchParams.get('extra')) || 0;
+
+                if (currentExtra > 1) {
+                    var newExtra = currentExtra - 1;
+
+                    window.location.href = '/fishtograph/data-tangkapan/tambah/?extra=' + newExtra;
+                }
+            });
+        });
+    </script>
+{% endblock  %}

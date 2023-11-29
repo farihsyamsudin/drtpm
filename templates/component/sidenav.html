@@ -1,0 +1,85 @@
+<div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+                <a class="nav-link" href="{% url 'dashboard' %}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Dashboard
+                </a>
+                <div class="sb-sidenav-menu-heading">Aplikasi</div>
+                <a class="nav-link" href="{% url 'daftar_data_penangkapan' %}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-line-chart"></i></div>
+                    Data Penangkapan Ikan
+                </a>
+                <a class="nav-link" href="{% url 'daftar_data_nelayan' %}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    Data Nelayan
+                </a>
+                <a class="nav-link" href="{% url 'daftar_data_kapal' %}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-ship"></i></div>
+                    Data Kapal
+                </a>
+                <a class="nav-link" href="{% url 'daftar_data_harga_ikan' %}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-fish"></i></div>
+                    Data Harga Ikan
+                </a>
+
+                <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    X
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                            X
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="">X</a>
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                            X
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="">X</a>
+                                <a class="nav-link" href="">X</a>
+                            </nav>
+                        </div>
+                    </nav>
+                </div> -->
+
+                <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Media
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="">Gallery</a>
+                        <a class="nav-link" href="">Posts</a>
+                    </nav>
+                </div> -->
+                <div class="sb-sidenav-menu-heading">Lainnya</div>
+                <a class="nav-link" href="">
+                    <div class="sb-nav-link-icon"><i class="fas fa-map"></i></div>
+                    Berita
+                </a>
+                {% if user.is_superuser %}
+                    <a class="nav-link" href="{% url 'admin:index' %}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-key"></i></div>
+                        Super Admin Dashboard
+                    </a>
+                {% endif %}
+
+            </div>
+        </div>
+        <div class="sb-sidenav-footer">
+            <div class="small">Logged in as: {{user.get_full_name}}</div>
+        </div>
+    </nav>
+</div>

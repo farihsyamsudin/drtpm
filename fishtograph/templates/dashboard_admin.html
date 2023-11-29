@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+</head>
+<body class="sb-nav-fixed">
+    {% include "component/nav.html" %}
+    <div id="layoutSidenav">
+        {% include "component/sidenav.html" %}
+        <div id="layoutSidenav_content">
+            <div class="container-fluid px-4">
+                <div class="container">
+                    <h1 style="text-align: center;">Dashboard admin</h1>
+                    <div class="row">
+                        <div class="col-md-4 col-xl-3">
+                            <div class="card-dashboard bg-c-blue order-card">
+                                <div class="card-block">
+                                    <h6 class="m-b-20">Total Nelayan</h6>
+                                    <h2 class="text-right pt-2" style="overflow: hidden;"><i class="fa fa-users f-left"></i><span class="f-right">{{total_data_nelayan}}</span></h2>
+                                    <a href="{% url 'daftar_data_nelayan' %}"><p class="see-more-card" style="margin-bottom: -8px;">Lihat Data</p></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 col-xl-3">
+                            <div class="card-dashboard bg-c-green order-card">
+                                <div class="card-block">
+                                    <h6 class="m-b-20">Total Penangkapan</h6>
+                                    <h2 class="text-right pt-2" style="overflow: hidden;"><i class="fa fa-line-chart f-left"></i><span class="f-right">{{total_data_penangkapan}}</span></h2>
+                                    <a href="{% url 'daftar_data_penangkapan' %}"><p class="see-more-card" style="margin-bottom: -8px;">Lihat Data</p></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 col-xl-3">
+                            <div class="card-dashboard bg-c-yellow order-card">
+                                <div class="card-block">
+                                    <h6 class="m-b-20">Total Hasil Tangkapan</h6>
+                                    <h2 class="text-right pt-2" style="overflow: hidden;"><i class="fa fa-refresh f-left"></i><span class="f-right">{{total_data_ikan_ditangkap}}</span></h2>
+                                    <a href="{% url 'daftar_data_penangkapan' %}"><p class="see-more-card" style="margin-bottom: -8px;">Lihat Data</p></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 col-xl-3">
+                            <div class="card-dashboard bg-c-pink order-card">
+                                <div class="card-block">
+                                    <h6 class="m-b-20">Total Kapal</h6>
+                                    <h2 class="text-right pt-2" style="overflow: hidden;"><i class="fa fa-ship f-left"></i><span class="f-right">{{ total_data_kapal }}</span></h2>
+                                    <a href="{% url 'daftar_data_kapal' %}"><p class="see-more-card" style="margin-bottom: -8px;">Lihat Data</p></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            {% include "component/footer.html" %}
+        </div>
+    </div>
+{% endblock  %}
